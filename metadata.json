@@ -1,0 +1,11 @@
+{
+  "name": "CropVisionAI",
+  "description": "Early Detection and Management of Crop Diseases and Pest Infestations with AI-powered diagnostics, risk alerts, and farmer-friendly management recommendations.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

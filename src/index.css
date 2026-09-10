@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #163D2B;
+  --color-forest-dark: #0F2A1E;
+  --color-forest-light: #1E4E37;
+  --color-mint: #34D399;
+  --color-mint-dark: #10B981;
+  --color-earth-bg: #F3F5F2;
+  --color-sage: #EAF0EB;
+  --color-sage-border: #E2E8DF;
+}
+
+@layer base {
+  :root {
+    --brand-forest: #163D2B;
+    --brand-mint: #34D399;
+    --brand-bg: #F3F5F2;
+    --brand-sage: #EAF0EB;
+    --brand-border: #E2E8DF;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #F3F5F2;
+    color: #1E293B;
+  }
+  
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom subtle professional scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F3F5F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5C8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A3B59F;
+}
+
+/* Laser scan animation */
+@keyframes scan-laser {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.8;
+  }
+}
+
+.animate-scan-laser {
+  animation: scan-laser 2.4s ease-in-out infinite alternate;
+}
+
+/* Subtle card styling */
+.agri-card {
+  background-color: #ffffff;
+  border: 1px solid #E2E8DF;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(22, 61, 43, 0.04), 0 1px 2px -1px rgba(22, 61, 43, 0.04);
+}
+
+.agri-badge {
+  background-color: #EAF0EB;
+  color: #163D2B;
+  border: 1px solid rgba(22, 61, 43, 0.12);
+}
+
