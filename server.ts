@@ -6,26 +6,108 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 // Support large image payloads for real-time camera and high-res mobile uploads
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
+// Helper to resolve Gemini API key across multiple env var aliases
+function getGeminiApiKey(): string {
+  return (
+    process.env.GEMINI_API_KEY ||
+    process.env.GOOGLE_API_KEY ||
+    process.env.VITE_GEMINI_API_KEY ||
+    ''
+  ).trim();
+}
+
+// Ordered list of candidate vision models for automatic fallback cascade
+const DEFAULT_MODEL_CANDIDATES = Array.from(
+  new Set(
+    [
+      process.env.GEMINI_MODEL,
+      'gemini-2.5-flash',
+      'gemini-2.0-flash',
+      'gemini-1.5-flash',
+      'gemini-3.1-flash-lite',
+    ].filter((m): m is string => Boolean(m && m.trim()))
+  )
+);
+
 // Lazy initialization of Gemini client
 let aiClient: GoogleGenAI | null = null;
 function getGeminiClient(): GoogleGenAI | null {
-  if (!aiClient && process.env.GEMINI_API_KEY) {
+  const apiKey = getGeminiApiKey();
+  if (!aiClient && apiKey) {
     aiClient = new GoogleGenAI({
-      apiKey: process.env.GEMINI_API_KEY,
+      apiKey,
       httpOptions: {
         headers: {
-          'User-Agent': 'aistudio-build',
+          'User-Agent': 'cropvision-build',
         },
       },
     });
   }
   return aiClient;
+}
+
+// Bulletproof JSON parser that strips markdown code fences and extraneous text
+function parseJsonSafely(text: string): any {
+  if (!text) return null;
+  let cleaned = text.trim();
+  // Strip markdown code fences if present
+  if (cleaned.includes('```')) {
+    cleaned = cleaned.replace(/```(?:json)?\s*([\s\S]*?)\s*```/gi, '$1').trim();
+  }
+  // Extract JSON object if wrapped by explanatory commentary
+  const firstBrace = cleaned.indexOf('{');
+  const lastBrace = cleaned.lastIndexOf('}');
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    cleaned = cleaned.substring(firstBrace, lastBrace + 1);
+  }
+  try {
+    return JSON.parse(cleaned);
+  } catch (err) {
+    console.warn('[CropVisionAI] JSON parse warning:', (err as Error).message);
+    return null;
+  }
+}
+
+// Resilient AI generation with automatic fallback cascade across model candidates
+async function generateWithModelFallback(
+  ai: GoogleGenAI,
+  contents: any,
+  systemInstruction?: string
+): Promise<string> {
+  let lastError: any = null;
+
+  for (const model of DEFAULT_MODEL_CANDIDATES) {
+    try {
+      const timeoutPromise = new Promise<{ text?: string }>((_, reject) =>
+        setTimeout(() => reject(new Error(`Model ${model} timed out after 22s`)), 22000)
+      );
+
+      const apiPromise = ai.models.generateContent({
+        model,
+        contents,
+        config: {
+          responseMimeType: 'application/json',
+          ...(systemInstruction ? { systemInstruction } : {}),
+        },
+      });
+
+      const response = await Promise.race([apiPromise, timeoutPromise]);
+      if (response && response.text) {
+        return response.text;
+      }
+    } catch (err: any) {
+      lastError = err;
+      console.warn(`[CropVisionAI] Model candidate "${model}" failed (${err?.message || err}). Trying next candidate if available...`);
+    }
+  }
+
+  throw lastError || new Error('All Gemini model candidates failed.');
 }
 
 // OpenWeather API key format validator & status cache
@@ -52,10 +134,12 @@ function isValidOpenWeatherKey(key: string | undefined): boolean {
 
 // Health check
 app.get('/api/health', (req, res) => {
+  const geminiKey = getGeminiApiKey();
   res.json({
     status: 'ok',
     service: 'CropVisionAI Server',
-    hasGeminiKey: Boolean(process.env.GEMINI_API_KEY),
+    hasGeminiKey: Boolean(geminiKey),
+    activeModel: DEFAULT_MODEL_CANDIDATES[0] || 'gemini-2.5-flash',
     hasOpenWeatherKey: !openWeatherKeyAuthFailed && isValidOpenWeatherKey(process.env.OPENWEATHER_API_KEY),
     timestamp: new Date().toISOString(),
   });
@@ -673,28 +757,16 @@ If isValidPlant is false, the userMessage field MUST start with the exact phrase
 
         let rawText = '';
         try {
-          const timeoutPromise = new Promise<{ text?: string }>((_, reject) =>
-            setTimeout(() => reject(new Error('Validation timeout exceeded')), 20000)
-          );
-
-          const apiPromise = ai.models.generateContent({
-            model: 'gemini-3.1-flash-lite',
-            contents: { parts: [imagePart, { text: validationPrompt }] },
-            config: {
-              responseMimeType: 'application/json',
-            },
+          rawText = await generateWithModelFallback(ai, {
+            parts: [imagePart, { text: validationPrompt }],
           });
-
-          const response = await Promise.race([apiPromise, timeoutPromise]);
-          rawText = response.text || '{}';
-        } catch {
-          // Model busy or network timeout - proceed gracefully to heuristic validation
+        } catch (genErr: any) {
+          console.warn('[CropVisionAI] Vision validation AI fallback triggered:', genErr?.message || genErr);
         }
 
         if (rawText) {
-          try {
-            const parsed = JSON.parse(rawText);
-
+          const parsed = parseJsonSafely(rawText);
+          if (parsed && typeof parsed.isValidPlant === 'boolean') {
             // Ensure userMessage complies with strict rejection prompt requirement
             let userMessage = parsed.userMessage || '';
             const isValid = Boolean(parsed.isValidPlant);
@@ -709,8 +781,6 @@ If isValidPlant is false, the userMessage field MUST start with the exact phrase
               reason: parsed.reason || (isValid ? 'Agricultural plant confirmed.' : 'Non-plant image identified.'),
               userMessage: userMessage || (isValid ? 'Plant subject validated.' : 'Please upload a plant-related image.'),
             });
-          } catch {
-            // Non-JSON output fallback
           }
         }
       }
@@ -805,23 +875,16 @@ Respond strictly in JSON:
 
         let rawText = '';
         try {
-          const timeoutPromise = new Promise<{ text?: string }>((_, reject) =>
-            setTimeout(() => reject(new Error('Analysis timeout')), 22000)
-          );
-          const apiPromise = ai.models.generateContent({
-            model: 'gemini-3.1-flash-lite',
-            contents: { parts: [imagePart, { text: analysisPrompt }] },
-            config: { responseMimeType: 'application/json' },
+          rawText = await generateWithModelFallback(ai, {
+            parts: [imagePart, { text: analysisPrompt }],
           });
-          const response = await Promise.race([apiPromise, timeoutPromise]);
-          rawText = response.text || '{}';
-        } catch {
-          // Model busy, timeout or rate limit - gracefully fallback to integrated pathology presets
+        } catch (genErr: any) {
+          console.warn('[CropVisionAI] AI crop pathology analysis fallback triggered:', genErr?.message || genErr);
         }
 
         if (rawText) {
-          try {
-            const parsed = JSON.parse(rawText);
+          const parsed = parseJsonSafely(rawText);
+          if (parsed) {
             if (parsed.isValidPlant === false) {
               let userMessage = parsed.userMessage || 'Please upload a plant-related image.';
               if (!userMessage.startsWith('Please upload a plant-related image')) {
@@ -883,13 +946,11 @@ Respond strictly in JSON:
                 }
               }
             });
-          } catch {
-            // JSON parse fallback
           }
         }
       }
-    } catch {
-      // Diagnostic scan completed with fallback
+    } catch (err: any) {
+      console.warn('[CropVisionAI] Diagnostic scan encountered error, using graceful fallback:', err?.message || err);
     }
   }
 
@@ -918,7 +979,14 @@ async function setupViteOrStatic() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`CropVisionAI server listening on port ${PORT}`);
+    console.log(`\n=============================================================`);
+    console.log(`🌿 CropVisionAI Server is active on port ${PORT}`);
+    console.log(`🌐 Local URL: http://localhost:${PORT}`);
+    const key = getGeminiApiKey();
+    console.log(`🧠 Gemini AI Engine: ${key ? 'ENABLED (API Key detected)' : 'PRESET/OFFLINE MODE (No key detected)'}`);
+    console.log(`🤖 Candidate Models: ${DEFAULT_MODEL_CANDIDATES.join(' -> ')}`);
+    console.log(`☁️  Meteorology Provider: ${isValidOpenWeatherKey(process.env.OPENWEATHER_API_KEY) ? 'OpenWeather Live' : 'Open-Meteo & Nominatim (Free, Keyless)'}`);
+    console.log(`=============================================================\n`);
   });
 }
 

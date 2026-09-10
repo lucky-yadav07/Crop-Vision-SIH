@@ -386,6 +386,632 @@ export const SAMPLE_SCAN_PRESETS: {
         chemicalThreshold: 'Threshold: 5-10 aphids per leaf on top 3 nodes of sample plants'
       }
     }
+  },
+  {
+    crop: 'Potato',
+    label: 'Potato Leaf Water-Soaked Lesions (Late Blight)',
+    type: 'disease',
+    thumbnail: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-potato-lb',
+      type: 'disease',
+      crop: 'Potato',
+      name: 'Late Blight of Potato',
+      scientificName: 'Phytophthora infestans',
+      confidence: 94,
+      severity: 'Severe',
+      imageUrl: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '24% foliar area',
+      symptoms: [
+        'Water-soaked dark green to purplish-black lesions starting from leaf tips and margins',
+        'Delicate white fungal downy mildew growth on leaf undersides in humid mornings',
+        'Rapid collapsing and rotting of petioles and stems with foul odor in wet fields',
+        'Tuber brown dry rot beneath skin during harvest'
+      ],
+      possibleCauses: [
+        'Prolonged cool (15-20°C) and highly humid (>90% RH) weather spells',
+        'Infected seed tubers carrying latent mycelium from storage',
+        'Windborne sporangia travelling from adjacent infected plots'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Halt overhead sprinkler irrigation immediately to arrest foliar wetness',
+          'Destroy heavily blighted foliage patches with targeted desiccant or cutting (dehaulming)'
+        ],
+        shortTerm: [
+          'Spray Cymoxanil 8% + Mancozeb 64% WP @ 2.5g/L or Dimethomorph 50% WP @ 1g/L',
+          'Ensure uniform coverage on lower canopy surfaces before rain intervals'
+        ],
+        longTerm: [
+          'Use certified disease-free seed tubers from trusted cold storage sources',
+          'Plant resistant varieties like Kufri Girdhari, Kufri Khyati, or Kufri Pukhraj',
+          'Practice proper earthing up to create a 10-15cm soil barrier over tubers'
+        ]
+      },
+      preventiveMeasures: [
+        'Prophylactic spray of Mancozeb 75 WP @ 2.5g/L before canopy closure',
+        'Maintain 60 x 20 cm spacing for good row aeration'
+      ],
+      ipmPractices: {
+        cultural: ['Proper earthing up to protect tubers', 'Dehaulming 10-12 days before harvest'],
+        biological: ['Foliar application of Trichoderma harzianum @ 5g/L'],
+        chemicalThreshold: 'Spray immediately upon first local weather blight alert'
+      }
+    }
+  },
+  {
+    crop: 'Potato',
+    label: 'Potato Stunted Shoots & Leaf Curl (Aphids & Tuber Moth)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-potato-aphid',
+      type: 'pest',
+      crop: 'Potato',
+      name: 'Potato Aphid & Sucking Pest Complex',
+      scientificName: 'Macrosiphum euphorbiae / Myzus persicae',
+      confidence: 91,
+      severity: 'Moderate',
+      imageUrl: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '16% shoot tips',
+      symptoms: [
+        'Curling, crinkling, and yellowing of young growing tips',
+        'Honeydew secretion promoting dark sooty mold on upper leaf surfaces',
+        'Stunted plant vigor and transmission of Potato Virus Y (PVY)',
+        'Colonies of small green or pinkish aphids clustered on petiole undersides'
+      ],
+      possibleCauses: [
+        'Warm dry spells following winter planting',
+        'Excessive vegetative nitrogen fertilizer promoting succulent foliage',
+        'Nearby solanaceous weeds acting as alternative hosts'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Install yellow sticky cards (15 per acre) across field borders to track winged migrants',
+          'Rogue out virus-infected stunted plants showing mosaic mottling'
+        ],
+        shortTerm: [
+          'Spray cold-pressed Neem Oil (10,000 ppm) @ 3ml/L with liquid soap',
+          'If aphid threshold exceeds 20 per 100 compound leaves, apply Flonicamid 50 WG @ 0.3g/L'
+        ],
+        longTerm: [
+          'Intercrop with companion crops like coriander or mustard to host predatory insects',
+          'Store seed tubers in diffused light stores with mesh netting to prevent tuber moth entry'
+        ]
+      },
+      preventiveMeasures: [
+        'Keep field borders weed-free from nightshade species',
+        'Ensure balanced potash application to strengthen leaf epidermis'
+      ],
+      ipmPractices: {
+        cultural: ['Yellow sticky traps monitoring', 'Deep earthing up to prevent tuber infestation'],
+        biological: ['Conservation of predatory ladybird beetles and hoverfly larvae'],
+        chemicalThreshold: 'Threshold: 20 aphids per 100 compound leaves for seed crop'
+      }
+    }
+  },
+  {
+    crop: 'Wheat',
+    label: 'Wheat Leaf Yellow Pustule Stripes (Yellow / Stripe Rust)',
+    type: 'disease',
+    thumbnail: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-wheat-yr',
+      type: 'disease',
+      crop: 'Wheat',
+      name: 'Stripe Rust / Yellow Rust of Wheat',
+      scientificName: 'Puccinia striiformis f. sp. tritici',
+      confidence: 96,
+      severity: 'High',
+      imageUrl: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '28% leaf area',
+      symptoms: [
+        'Bright yellow to orange-yellow uredinial pustules arranged in parallel linear stripes along leaf veins',
+        'Chlorotic yellow banding and premature leaf drying from tip downwards',
+        'Yellow powdery rust spore dust easily rubbing off onto fingertips and clothing',
+        'Shrinkage and shriveling of wheat grains during grain filling stage'
+      ],
+      possibleCauses: [
+        'Cool temperatures (10-15°C) combined with high relative humidity and morning dew',
+        'Planting susceptible older wheat cultivars in foothill / northern plains corridors',
+        'Airborne rust urediniospores blown from Himalayan foothills'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Scout entire field perimeter to locate foci of initial infection patches',
+          'Avoid excess irrigation that prolongs morning leaf wetness and humidity'
+        ],
+        shortTerm: [
+          'Foliar spray with Propiconazole 25% EC (Tilt) @ 1ml/L or Tebuconazole 25.9% EC @ 1.25ml/L',
+          'Ensure spray volume of 200 liters of water per acre for thorough canopy coverage'
+        ],
+        longTerm: [
+          'Sow rust-resistant wheat varieties such as DBW 187, DBW 222, HD 3086, or HD 3226',
+          'Ensure timely sowing in November to escape late-season epidemic peaks'
+        ]
+      },
+      preventiveMeasures: [
+        'Do not grow susceptible varieties in the sub-mountainous stripe rust corridor',
+        'Maintain balanced N-P-K nutrition (avoid excess urea application)'
+      ],
+      ipmPractices: {
+        cultural: ['Timely sowing before Nov 15th', 'Diversified resistant varietal deployment'],
+        biological: ['Bio-agents like Trichoderma viride seed coating'],
+        chemicalThreshold: 'Apply triazole fungicide as soon as first pustule stripe is detected'
+      }
+    }
+  },
+  {
+    crop: 'Wheat',
+    label: 'Wheat Ragged Leaf Margins & Nibbled Spikes (Armyworm)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-wheat-aw',
+      type: 'pest',
+      crop: 'Wheat',
+      name: 'Wheat Armyworm & Ear-Cutting Caterpillar',
+      scientificName: 'Mythimna separata',
+      confidence: 88,
+      severity: 'Moderate',
+      imageUrl: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '12% canopy damage',
+      symptoms: [
+        'Irregular ragged notches chewed along leaf margins, often leaving only the central midrib',
+        'Ear heads clipped off and dropped onto the field soil during night feeding',
+        'Dark cylindrical frass pellets found around plant base and crown soil',
+        'Nocturnal smooth caterpillars hiding under soil clods and leaf debris during daytime'
+      ],
+      possibleCauses: [
+        'Warm cloudy spells following late winter rain showers',
+        'Dense lodged crop providing moist shady shelter for pupation',
+        'Abundance of grassy weeds around irrigation channels'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Irrigate the field lightly to flush caterpillars out of soil clods for bird predation',
+          'Dig 15cm perimeter trenches around infested field patches to halt marching caterpillars'
+        ],
+        shortTerm: [
+          'Spray during late evening with Chlorantraniliprole 18.5 SC @ 0.3ml/L or Quinalphos 25 EC @ 2ml/L',
+          'Direct spray nozzle towards plant base and crown where larvae aggregate'
+        ],
+        longTerm: [
+          'Deep summer ploughing to expose dormant pupae to scorching sunlight and birds',
+          'Keep bunds and irrigation channels clean of wild grasses'
+        ]
+      },
+      preventiveMeasures: [
+        'Monitor field during dusk with a flashlight when armyworms climb up stems',
+        'Encourage bird perches (T-shaped bamboo perches @ 15/acre)'
+      ],
+      ipmPractices: {
+        cultural: ['Perimeter trenches to trap marching larvae', 'T-shaped bird perches'],
+        biological: ['Encourage predatory ground beetles (Carabidae) and parasitic tachinid flies'],
+        chemicalThreshold: 'Threshold: 4-5 larvae per meter row in heading stage'
+      }
+    }
+  },
+  {
+    crop: 'Cotton',
+    label: 'Cotton Angular Water-Soaked Leaf Spots (Bacterial Blight)',
+    type: 'disease',
+    thumbnail: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-cotton-bb',
+      type: 'disease',
+      crop: 'Cotton',
+      name: 'Bacterial Blight / Angular Leaf Spot of Cotton',
+      scientificName: 'Xanthomonas citri pv. malvacearum',
+      confidence: 93,
+      severity: 'High',
+      imageUrl: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '22% leaf canopy',
+      symptoms: [
+        'Angular dark green water-soaked spots bounded by small leaf veins',
+        'Spots turning dark reddish-brown to black on upper leaf surface',
+        'Black arm symptom with elongated sunken black cankers on branches causing snapping',
+        'Boll rot with sunken dark lesions staining lint fibers'
+      ],
+      possibleCauses: [
+        'High humidity (>85%) and warm temperatures (28-34°C) with intermittent rain squalls',
+        'Use of fuzzy non-delinted seed carrying bacteria on seed coat',
+        'Windborne rain splashing inoculum from lower leaves upward'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Prune and destroy severely infected black-arm branches during dry weather',
+          'Avoid entering or cultivating wet fields to prevent spreading bacterial slime'
+        ],
+        shortTerm: [
+          'Foliar spray with Copper Oxychloride 50 WP @ 2.5g/L + Streptocycline @ 0.1g/L',
+          'Repeat after 12-15 days if monsoon rainfall persists'
+        ],
+        longTerm: [
+          'Plant acid-delinted certified seeds treated with concentrated sulphuric acid',
+          'Grow resistant cotton hybrids and rotate with non-host crops like maize or sorghum'
+        ]
+      },
+      preventiveMeasures: [
+        'Hot water seed soak or Agrimycin seed treatment before sowing',
+        'Maintain proper 90 x 60 cm plant spacing to avoid dense canopy microclimate'
+      ],
+      ipmPractices: {
+        cultural: ['Acid delinting of seed', 'Crop residue destruction after picking'],
+        biological: ['Seed treatment with Pseudomonas fluorescens @ 10g/kg'],
+        chemicalThreshold: 'Spray on initial notice of angular lesions before black arm progression'
+      }
+    }
+  },
+  {
+    crop: 'Cotton',
+    label: 'Cotton Rosetted Flowers & Pierced Bolls (Pink Bollworm)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-cotton-pbw',
+      type: 'pest',
+      crop: 'Cotton',
+      name: 'Pink Bollworm Infestation',
+      scientificName: 'Pectinophora gossypiella',
+      confidence: 95,
+      severity: 'Severe',
+      imageUrl: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '30% squares & bolls',
+      symptoms: [
+        'Rosetted flowers with petals twisted and sealed together by caterpillar webbing',
+        'Tiny entry holes on green developing bolls with brown frass staining',
+        'Burrowed hollowed seeds inside unopened bolls with stained discolored lint',
+        'Pink-banded caterpillars feeding inside locules destroying fiber quality'
+      ],
+      possibleCauses: [
+        'Prolonged continuous cotton cropping extending into ratoon seasons',
+        'Failure to destroy ginning waste and cotton stalks containing diapausing larvae',
+        'Development of resistance to early-generation Cry toxins'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Hand-collect and incinerate all rosetted flowers and prematurely dropped squares',
+          'Deploy Gossyplure pheromone traps @ 8-10 traps per acre for mass monitoring'
+        ],
+        shortTerm: [
+          'Install mating disruption pheromone ropes or PB-Rope L @ 150 dispensers/acre',
+          'Spray Profenofos 50 EC @ 2ml/L or Spinetoram 11.7 SC @ 1ml/L targeted at evening dusk'
+        ],
+        longTerm: [
+          'Terminate cotton crop by December and strictly avoid taking ratoon crops',
+          'Shred and deeply incorporate cotton stalks immediately after final picking'
+        ]
+      },
+      preventiveMeasures: [
+        'Grow non-Bt refuge borders (20% non-Bt) to delay insect resistance',
+        'Scout 20 bolls weekly for entry punctures from 60 days after sowing'
+      ],
+      ipmPractices: {
+        cultural: ['Strict closed season without ratoon crop', 'Timely stalk destruction'],
+        biological: ['Trichogrammatoidea bactrae egg parasitoid releases @ 50,000/acre'],
+        chemicalThreshold: 'Threshold: 10% infested green bolls or 8 moths/trap/night for 3 consecutive days'
+      }
+    }
+  },
+  {
+    crop: 'Maize',
+    label: 'Maize Cigar-Shaped Grey Lesions (Turcicum Leaf Blight)',
+    type: 'disease',
+    thumbnail: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-maize-tlb',
+      type: 'disease',
+      crop: 'Maize',
+      name: 'Turcicum Leaf Blight (Northern Corn Leaf Blight)',
+      scientificName: 'Exserohilum turcicum',
+      confidence: 93,
+      severity: 'Moderate',
+      imageUrl: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '20% canopy foliage',
+      symptoms: [
+        'Long elliptical, cigar-shaped tan to grayish-green necrotic lesions on leaf blades',
+        'Lesions extending up to 15cm in length with dark olive-brown fungal spore dusting',
+        'Premature blighting and burning of lower canopy leaves moving upwards toward tassels',
+        'Impaired photosynthesis causing poor grain filling in developing cobs'
+      ],
+      possibleCauses: [
+        'Moderate temperatures (18-27°C) with prolonged morning dew and overcast skies',
+        'Susceptible maize hybrids planted under high plant density',
+        'Fungal spores surviving on unploughed corn stubble from prior seasons'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Strip and destroy severely blighted lower 2-3 leaves to limit spore spread',
+          'Avoid sprinkler irrigation late in the evening'
+        ],
+        shortTerm: [
+          'Foliar spray with Mancozeb 75 WP @ 2.5g/L or Azoxystrobin 18.2% + Difenoconazole 11.4% SC @ 1ml/L',
+          'Direct spray to ensure full coverage of ear leaf and leaves above the ear'
+        ],
+        longTerm: [
+          'Select certified blight-tolerant maize hybrids (e.g. HQPM-1, Pusa Vivek QPM-9)',
+          'Adopt 2-year crop rotation with pulses or oilseeds'
+        ]
+      },
+      preventiveMeasures: [
+        'Treat seed with Thiram or Carbendazim @ 2.5g/kg of seed',
+        'Maintain 60 x 20 cm spacing to maximize air circulation'
+      ],
+      ipmPractices: {
+        cultural: ['Deep autumn tillage', 'Crop rotation with non-gramineous hosts'],
+        biological: ['Seed biopriming with Trichoderma asperellum'],
+        chemicalThreshold: 'Apply fungicide if lesions appear on 3rd leaf below the ear prior to silking'
+      }
+    }
+  },
+  {
+    crop: 'Sugarcane',
+    label: 'Sugarcane Dead Heart & Bore Holes (Early Shoot Borer)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-cane-esb',
+      type: 'pest',
+      crop: 'Sugarcane',
+      name: 'Early Shoot Borer of Sugarcane',
+      scientificName: 'Chilo infuscatellus',
+      confidence: 92,
+      severity: 'High',
+      imageUrl: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '18% young tillers',
+      symptoms: [
+        'Drying of central spindle shoot resulting in a distinctive dead heart in 1-3 month old shoots',
+        'Dead heart easily pulled out from shoot with rotten, foul-smelling basal portion',
+        'Small pinhole bore entry holes at ground level on the base of cane shoots',
+        'Reduced tillering and patchy field stand with stunted auxiliary shoots'
+      ],
+      possibleCauses: [
+        'Hot and dry summer months (March to June) with low atmospheric humidity',
+        'Shallow planting of cane setts with inadequate soil earthing',
+        'Heavy early nitrogen application without adequate irrigation'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Pull out and safely bury dead hearts to eliminate larvae inside the shoot base',
+          'Provide light, frequent irrigation to raise microclimate humidity and deter egg laying'
+        ],
+        shortTerm: [
+          'Apply Chlorantraniliprole 0.4 G @ 7.5 kg/acre or Cartap hydrochloride 4 G @ 10 kg/acre in furrows followed by light earthing up and irrigation',
+          'Release egg parasitoid Trichogramma chilonis @ 20,000/acre at 10-day intervals'
+        ],
+        longTerm: [
+          'Deep planting in furrows (20-25 cm depth) followed by timely partial earthing up at 45 days',
+          'Trash mulching along ridges with 10 cm layer of cane leaves to conserve moisture and impede moth emergence'
+        ]
+      },
+      preventiveMeasures: [
+        'Intercrop with companion crops like daincha (Sesbania) or cowpea',
+        'Avoid late planting in peak borer emergence months'
+      ],
+      ipmPractices: {
+        cultural: ['Trash mulching @ 3 tonnes/acre', 'Timely earthing up to cover bore holes'],
+        biological: ['Trichogramma chilonis releases @ 20,000/acre/week (4-6 releases)'],
+        chemicalThreshold: 'Threshold: 15% dead hearts in the early tillering phase'
+      }
+    }
+  },
+  {
+    crop: 'Rice',
+    label: 'Rice Circular Hopper Burn Patches & Nilaparvata (BPH)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1536657464919-892534f60d6e?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-rice-bph',
+      type: 'pest',
+      crop: 'Rice',
+      name: 'Brown Plant Hopper (BPH) Infestation',
+      scientificName: 'Nilaparvata lugens',
+      confidence: 96,
+      severity: 'Severe',
+      imageUrl: 'https://images.unsplash.com/photo-1536657464919-892534f60d6e?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '25% field patch',
+      symptoms: [
+        'Circular patches of dried, golden-brown straw-colored plants known as hopper burn',
+        'Dense colonies of brown adult hoppers and nymphs clustered at the submerged stem base',
+        'Excessive honeydew secretion with black sooty mold choking lower tillers',
+        'Total lodging and complete collapse of rice hills in severe infestations'
+      ],
+      possibleCauses: [
+        'High humidity and stagnant water standing continuously in dense rice canopies',
+        'Excessive synthetic urea top-dressing with zero potassium balance',
+        'Indiscriminate use of synthetic pyrethroids destroying natural wolf spiders and mirid bugs'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Drain standing water from the field completely for 3-4 days to expose hopper habitat',
+          'Create alleyways (skip one row every 2-3 meters) to allow sunlight and aeration into canopy base'
+        ],
+        shortTerm: [
+          'Spray Pymetrozine 50 WG @ 120g/acre or Triflumezopyrim 10 SC @ 94ml/acre directed specifically at the base of the hills',
+          'Avoid broad-spectrum pyrethroid insecticides which trigger resurgence'
+        ],
+        longTerm: [
+          'Deploy BPH-tolerant rice varieties such as CR Dhan 310, Improved White Ponni, or MTU 1010',
+          'Practice alternate wetting and drying (AWD) irrigation rather than continuous flooding'
+        ]
+      },
+      preventiveMeasures: [
+        'Maintain 20 x 15 cm spacing and skip one row every 2.5m for inspection alleys',
+        'Apply nitrogen fertilizer in 3-4 split doses rather than heavy single applications'
+      ],
+      ipmPractices: {
+        cultural: ['Alternate wetting and drying (AWD)', 'Formation of walking alleys (skip rows)'],
+        biological: ['Conservation of Lycosa wolf spiders and Cyrtorhinus mirid bugs'],
+        chemicalThreshold: 'Threshold: 10-15 hoppers per hill before booting; 20 hoppers per hill at heading'
+      }
+    }
+  },
+  {
+    crop: 'Mustard',
+    label: 'Mustard Curled Pods & Sticky Clusters (Mustard Aphid)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-mustard-aphid',
+      type: 'pest',
+      crop: 'Mustard',
+      name: 'Mustard Aphid Infestation',
+      scientificName: 'Lipaphis erysimi',
+      confidence: 93,
+      severity: 'High',
+      imageUrl: 'https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '24% flower & pod cluster',
+      symptoms: [
+        'Dense colonies of greenish-gray soft-bodied aphids covering flower buds, pods, and tender shoots',
+        'Severe curling, crinkling, and yellowing of inflorescence and terminal leaves',
+        'Blasting of flowers preventing siliqua (pod) formation and seed development',
+        'Copious honeydew deposition resulting in black sooty mold over foliage'
+      ],
+      possibleCauses: [
+        'Cloudy, humid, and calm winter weather during December to February',
+        'Late sowing of mustard after October 25th in northern plains',
+        'Excessive synthetic nitrogen application producing dense succulent vegetative shoots'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Clip and destroy heavily infested terminal twigs showing initial aphid colonies',
+          'Install yellow sticky traps (15-20/acre) around field boundaries'
+        ],
+        shortTerm: [
+          'Spray cold-pressed Neem Oil (10,000 ppm) @ 3ml/L with liquid soap at early colonization',
+          'If aphid colonies exceed 20% plants infested, spray Dimethoate 30 EC @ 1.7ml/L or Thiamethoxam 25 WG @ 0.4g/L'
+        ],
+        longTerm: [
+          'Early sowing before October 20th to escape peak aphid reproductive population in January',
+          'Plant tolerant cultivars such as Pusa Gaurav, RH 749, or RGN 73'
+        ]
+      },
+      preventiveMeasures: [
+        'Sow early in October with optimal 30 x 10 cm row spacing',
+        'Conserve natural predators by avoiding chemical spraying during peak bee foraging hours'
+      ],
+      ipmPractices: {
+        cultural: ['Timely early sowing in October', 'Clipping of infested terminal twigs'],
+        biological: ['Conservation of Coccinella septempunctata ladybird beetles and syrphid fly maggots'],
+        chemicalThreshold: 'Threshold: 20-25 aphids on 10 cm terminal shoot of 10% sample plants'
+      }
+    }
+  },
+  {
+    crop: 'Tomato',
+    label: 'Tomato Bored Fruits & Frass (Tomato Fruit Borer)',
+    type: 'pest',
+    thumbnail: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-tomato-fb',
+      type: 'pest',
+      crop: 'Tomato',
+      name: 'Tomato Fruit Borer / American Bollworm',
+      scientificName: 'Helicoverpa armigera',
+      confidence: 94,
+      severity: 'High',
+      imageUrl: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '20% developing fruit',
+      symptoms: [
+        'Circular bore holes on developing green and ripe tomato fruits with head thrust inside while feeding',
+        'Granular moist caterpillar fecal frass accumulated around entry punctures',
+        'Premature fruit rotting, yellowing, and drop before commercial maturity',
+        'Defoliation of tender shoot leaves and flower buds by young instar larvae'
+      ],
+      possibleCauses: [
+        'High nocturnal moth activity during warm humid evenings',
+        'Presence of alternative host crops (chickpea, pigeonpea, corn) in neighboring plots',
+        'Monocropping of tomato without marigold trap crops'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Handpick and destroy bored fruits and conspicuous caterpillars daily',
+          'Deploy Helilure pheromone traps @ 5 per acre to monitor adult moth flight surges'
+        ],
+        shortTerm: [
+          'Spray bio-pesticide HaNPV (Helicoverpa nuclear polyhedrosis virus) @ 250 LE/acre with jaggery (1%) at dusk',
+          'Apply Chlorantraniliprole 18.5 SC @ 0.3ml/L or Flubendiamide 39.35 SC @ 0.3ml/L if fruit damage exceeds 5%'
+        ],
+        longTerm: [
+          'Plant African tall marigold as a trap crop (1 row of marigold for every 16 rows of tomato)',
+          'Deep summer ploughing to destroy overwintering soil pupae'
+        ]
+      },
+      preventiveMeasures: [
+        'Interplant marigold to attract egg-laying moths away from tomato fruits',
+        'Release egg parasitoid Trichogramma pretiosum @ 50,000/acre at flowering stage'
+      ],
+      ipmPractices: {
+        cultural: ['African Marigold trap cropping (1:16 ratio)', 'Hand-picking bored fruits'],
+        biological: ['HaNPV viral spray @ 250 LE/acre', 'Release Trichogramma pretiosum'],
+        chemicalThreshold: 'Threshold: 1 larva per plant or 5% fruit damage'
+      }
+    }
+  },
+  {
+    crop: 'Chili',
+    label: 'Chili Sunken Fruit Spots & Twig Die-Back (Anthracnose)',
+    type: 'disease',
+    thumbnail: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=600&q=80',
+    result: {
+      id: 'res-chili-anth',
+      type: 'disease',
+      crop: 'Chili',
+      name: 'Anthracnose & Fruit Rot / Die-Back of Chili',
+      scientificName: 'Colletotrichum capsici',
+      confidence: 92,
+      severity: 'High',
+      imageUrl: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=80',
+      timestamp: 'Just now',
+      affectedAreaEstimate: '22% fruits and stems',
+      symptoms: [
+        'Sunken circular water-soaked spots on ripening red and green chili fruits',
+        'Concentric rings of dark acervuli spots within fruit lesions producing salmon-pink spore masses in moist weather',
+        'Die-back symptom: necrosis and drying of twigs from top downwards with straw-colored bark',
+        'Premature fruit drop and rotting of infected peppers'
+      ],
+      possibleCauses: [
+        'Heavy intermittent monsoon rains with warm temperatures (28-32°C)',
+        'Infected seed or fungal spores splashing from previous season chili residue',
+        'Overhead irrigation creating prolonged wetness on ripening pods'
+      ],
+      recommendedActions: {
+        immediate: [
+          'Pick and safely destroy infected mummified fruits and dried twigs away from the field',
+          'Switch from sprinkler or flood watering to furrow/drip irrigation at base'
+        ],
+        shortTerm: [
+          'Foliar spray with Azoxystrobin 23% SC @ 1ml/L or Difenoconazole 25% EC @ 0.5ml/L',
+          'Apply Copper Oxychloride 50 WP @ 2.5g/L on canopy and fruit clusters'
+        ],
+        longTerm: [
+          'Use certified disease-free seeds treated with Thiram or Captan @ 3g/kg seed',
+          'Practice 2-year crop rotation avoiding solanaceous crops (tomato, brinjal)',
+          'Plant anthracnose-tolerant varieties like Punjab Lal, Pusa Jwala, or Kashi Anmol'
+        ]
+      },
+      preventiveMeasures: [
+        'Seed treatment with Trichoderma viride @ 5g/kg seed',
+        'Maintain 60 x 45 cm spacing to facilitate quick drying of foliage after rain'
+      ],
+      ipmPractices: {
+        cultural: ['Pruning and burning of dead branches', 'Deep summer ploughing'],
+        biological: ['Seed treatment with Trichoderma viride @ 4g/kg seed'],
+        chemicalThreshold: 'Spray on initial fruit spot detection before red fruit ripening'
+      }
+    }
   }
 ];
 
